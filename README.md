@@ -83,33 +83,33 @@ O lab é uma simulação de uma rede no DF entre unidades do governo, onde é co
 <details>
 <summary> <b>Teste Após solicitar ip nas máquinas 1, 5 e 3</b> </summary>
 
-  ![teste_dhcp_lease](assets\teste_impar.png)
+  ![teste_dhcp_lease](/assets/teste_impar.png)
 
 </details>
 
 <details>
 <summary> <b>Solicitando IP no restante das máquinas</b> </summary>
 
-![dhcp_pc02](assets\pc02.png)
+![dhcp_pc02](/assets/pc02.png)
 <hr>
 
-![dhcp_pc04](assets\pc04.png)
+![dhcp_pc04](/assets/pc04.png)
 <hr>
 
-![dhcp_pc06](assets\pc06.png)
+![dhcp_pc06](/assets/pc06.png)
 
 </details>
 
 <details>
 <summary> <b>Tentando comunicação entre as máquinas</b> </summary>
 
-![ping_pc01](assets\ping_pc01.png)
+![ping_pc01](/assets//ping_pc01.png)
 <hr>
 
-![ping_pc04](assets\ping_pc04.png)
+![ping_pc04](/assets/ping_pc04.png)
 <hr>
 
-![ping_pc06](assets\ping_pc06.png)
+![ping_pc06](/assets/ping_pc06.png)
 <hr>
 
 </details>
@@ -117,7 +117,7 @@ O lab é uma simulação de uma rede no DF entre unidades do governo, onde é co
 <details>
 <summary> <b>Verificando leases pós ping</b> </summary>
 
-![lease_pos](assets\teste_pos_ping.png)
+![lease_pos](/assets/teste_pos_ping.png)
 
 </details>
 
@@ -132,4 +132,4 @@ Os principais pontos positivos do DHCP são: redução de erros, economia de tem
 
 ## Topologia da rede
 
-![Topologia](assets\topologiaGNS3.png)
+![Topologia](/assets/topologiaGNS3.png)
