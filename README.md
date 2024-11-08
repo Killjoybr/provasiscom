@@ -31,11 +31,11 @@ Tarefas a serem Realizadas:
         - Conecte o switch de Asa Norte à Interface Ether2 do Router.
         - Conecte o switch de Asa Sul à Interface Ether3 do Router.
 
-    Configuração do Roteamento Estático:
+    **Configuração do Roteamento Estático:**
   - Configure o protocolo de roteamento estático no roteador central para direcionar o tráfego entre as três sub-redes.
   - Defina as interfaces de rede que estarão envolvidas no roteamento estático entre as unidades.
 
-    Configuração de IPs e Testes:
+    **Configuração de IPs e Testes:**
 
     Atribua IPs aos VPCS para simular dispositivos de cada unidade, como segue:
     - Unidade Taguatinga: IP na faixa 192.168.10.10/24 com gateway 192.168.10.1
@@ -46,18 +46,19 @@ Tarefas a serem Realizadas:
 
 ## Critérios de Avaliação:
 
-  Corretude da Configuração:
-    - A topologia foi implementada de acordo com as especificações?
-    - As rotas estáticas foram configuradas corretamente para permitir o roteamento entre as sub-redes das três unidades regionais?
-    - A comunicação entre os dispositivos das unidades está funcionando corretamente?
+  **Corretude da Configuração:**
+- A topologia foi implementada de acordo com as especificações?
+- As rotas estáticas foram configuradas corretamente para permitir o roteamento entre as sub-redes das três unidades regionais?
+- A comunicação entre os dispositivos das unidades está funcionando corretamente?
 
-  Relatório:
+
+  **Relatório:**
 - Inclua descrições dos passos de configuração no GNS3.
 - Detalhe o processo de configuração do roteamento estático e atribuição de IPs, utilizando referências e capturas de tela da configuração.
 - Avalie as vantagens observadas no uso do roteamento estático para este cenário.
 
 
-  Suporte:
+  **Suporte:**
       Estarei disponível por e-mail: redacted e celular (WhatsApp): redacted das 13h às 16h de seg-qui para sanar eventuais dúvidas na implementação.
 
 Observação: A avaliação consiste na realização do experimento e entrega do relatório sucinto contendo as descrições e evidências (prints) das configurações e testes realizados.
