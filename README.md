@@ -1,64 +1,135 @@
-# Roteamento Estático entre Unidades Regionais do Governo do Distrito Federal
+# Avaliação SISCOM
 
-## Contexto do Problema:
+```JSON
+{
+  "aluno":"Ruan David da Silva",
+  "ra":"22051922",
+  "matéria":"Sistemas de Comunicação",
+  "Professor":"Klayton Rodrigues de Castro",
+}
+```
 
-O cenário envolve um cenário hipotético de conexão entre três unidades regionais do Governo do Distrito Federal (GDF), distribuídas em diferentes regiões administrativas:
+- [Resumo](#resumo)
+- [Tarefas](#tarefas)
+- [Configuração no Roteador Mikrotik CHR](#configuração-no-roteador-mikrotik-chr)
+- [Testes](#testes)
+- [Topologia da rede](#topologia-da-rede)
 
-  1. Taguatinga: Unidade responsável pelos serviços administrativos e de atendimento ao público na região.
-  1. Asa Norte: Unidade focada nos serviços de planejamento e coordenação de projetos no DF.
-  1. Asa Sul: Unidade encarregada dos serviços de suporte técnico e infraestrutura de TI.
+## Resumo
+Utilizei as documentações disponíveis no github do professor para inicializar o laboratório, as tecnologias utilizadas foram: **git**, **cli**, **docker**, **gns3** e **conceitos de redes**. O laboratório tem como objetivo avaliar a compreensão do aluno com conceitos de configuração de ips estáticos nos equipamentos (o professor também aceita assimilação de ips utilizando DHCP), estruturação da topologia da rede (Conexão física entre as máquinas) e se a comunicação entre os dispositivos não apresenta erro. 
 
-Para garantir uma comunicação eficiente e segura entre as unidades, foi configurado um roteador central para realizar o roteamento entre as sub-redes das três regiões, com suporte ao gerenciamento e ao tráfego de dados entre elas.
+Após terminar o laboratório eu me senti capaz de configurar um firewall em casa, podemos considerar qualquer switch que utilizei no laborátorio e imaginar que ele funcionaria como um dispositivo diferente rodando um firewall, configurando apenas um gateway todo o tráfego passara por esse dispositivo (raspberrypi?) e assim melhoraria a segurança da sua rede doméstica, porém isso foi apenas um sentimento após o término do laboratório. 
 
-## Objetivo da Simulação:
-
-Configurar e validar a comunicação entre as unidades do GDF (Taguatinga, Asa Norte, Asa Sul) utilizando o simulador GNS3. A topologia será composta por um roteador central (MikroTik CHR) e três switches Ethernet conectados a dispositivos VPCS (Virtual PC Simulator) que simulam computadores ou dispositivos de cada unidade.
-Tarefas a serem Realizadas:
-
-  - Instalação do Roteador Mikrotik CHR no GNS3:
-        - Acesse as instruções e arquivos necessários no repositório siscom/routing no GitHub do professor. 
-        - Baixe o arquivo chr-7.11.2.img.zip ou chr-7.14.3.img.zip, e descompacte-o com o comando unzip.
-        - Importe a imagem do roteador MikroTik CHR no GNS3 seguindo as orientações disponíveis no repositório.
-
-  - Configuração da Topologia no GNS3:
-        - Crie um novo projeto no GNS3.
-- Adicione os dispositivos necessários:
-    - 1 roteador (MikroTik CHR).
-    - 3 switches Ethernet.
-    - 6 VPCS (2 para cada unidade regional).
-    - Conexões:
-      - Conecte o switch de Taguatinga à Interface Ether1 do Router.
-        - Conecte o switch de Asa Norte à Interface Ether2 do Router.
-        - Conecte o switch de Asa Sul à Interface Ether3 do Router.
-
-    **Configuração do Roteamento Estático:**
-  - Configure o protocolo de roteamento estático no roteador central para direcionar o tráfego entre as três sub-redes.
-  - Defina as interfaces de rede que estarão envolvidas no roteamento estático entre as unidades.
-
-    **Configuração de IPs e Testes:**
-
-    Atribua IPs aos VPCS para simular dispositivos de cada unidade, como segue:
-    - Unidade Taguatinga: IP na faixa 192.168.10.10/24 com gateway 192.168.10.1
-    - Unidade Asa Norte: IP na faixa 192.168.20.10/24 com gateway 192.168.20.1
-    - Unidade Asa Sul: IP na faixa 192.168.30.10/24 com gateway 192.168.30.1
-    
-    Teste a comunicação entre dispositivos das três unidades e entre dispositivos de cada unidade.
-
-## Critérios de Avaliação:
-
-  **Corretude da Configuração:**
-- A topologia foi implementada de acordo com as especificações?
-- As rotas estáticas foram configuradas corretamente para permitir o roteamento entre as sub-redes das três unidades regionais?
-- A comunicação entre os dispositivos das unidades está funcionando corretamente?
+O lab é uma simulação de uma rede no DF entre unidades do governo, onde é composta por: um roteador em uma região não especificada, mas com certeza em "alcance" MAN e trios compostos por, um switch e 2 PCs que funcionam como LAN e estão conectadas ao roteador que interliga os 3 switches e provisiona os endereços de ip pra cada máquina via servidor DHCP.
 
 
-  **Relatório:**
-- Inclua descrições dos passos de configuração no GNS3.
-- Detalhe o processo de configuração do roteamento estático e atribuição de IPs, utilizando referências e capturas de tela da configuração.
-- Avalie as vantagens observadas no uso do roteamento estático para este cenário.
+## Tarefas
 
+- Passos de configuração do GNS3
+  - Topologia (via GUI)
+      - Importar a imagem do Mikrotk CHR para a bliblioteca do GNS3.
+      - Importar o dispositivo virtual do Mikrotik, que será nosso roteador central.
+      - Importar 3 switches, cada um representando uma região diferente do DF, Taguatinga, Asa Norte e Asa Sul, respectivamente.
+      - Importar 2 VPCs para cada switch, que serão nossas máquinas virtuais.
+      - Conectar os cabos lógicos de cada dispositivo:
+        - Roteador Central ethernet 1 - Switch Taguatinga
+        - Roteador Central ethernet 2 - Switch Asa Norte
+        - Roteador Central ethernet 3 - Switch Asa Sul
+        - Switch Taguatinga ethernet n - VPc n 
+        - Switch Asa Norte ethernet n - VPc n 
+        - Switch Asa Sul ethernet n - VPc n
+  - Configuração via CLI para servidor DHCP e ping simulando comunicação entre as VPCs localmente e entre unidades.
 
-  **Suporte:**
-      Estarei disponível por e-mail: redacted e celular (WhatsApp): redacted das 13h às 16h de seg-qui para sanar eventuais dúvidas na implementação.
+## Configuração no Roteador Mikrotik CHR
 
-Observação: A avaliação consiste na realização do experimento e entrega do relatório sucinto contendo as descrições e evidências (prints) das configurações e testes realizados.
+<details>
+<summary> <b>Assimilando ips as interfaces</b> </summary>
+
+  ```shell
+    ip address add address=192.168.10.1/24 interface=ether1
+  ```
+
+</details>
+
+<details>
+<summary> <b>Criação das pools de Ips dinâmicos</b> </summary>
+
+  ```shell
+    ip pool add name=dhcp_pool_taguatinga ranges-192.168.10.100-192.168.10.200
+  ```
+
+</details>
+
+<details>
+<summary> <b>Criação do servidor DHCP na interface</b> </summary>
+
+  ```shell
+    ip dhcp-server add name=dhcp_server_taguatinga interface=ether1 address-pool=dhcp_pool_taguatinga lease-time=1h
+  ```
+
+</details>
+
+<details>
+<summary> <b>Assimilação das redes de cada servidor DHCP</b> </summary>
+
+  ```shell
+    ip dhcp-server network add address=192.168.10.0/24 gateway=192.168.10.1
+  ```
+
+</details>
+
+## Testes
+
+<details>
+<summary> <b>Teste Após solicitar ip nas máquinas 1, 5 e 3</b> </summary>
+
+  ![teste_dhcp_lease](assets\teste_impar.png)
+
+</details>
+
+<details>
+<summary> <b>Solicitando IP no restante das máquinas</b> </summary>
+
+![dhcp_pc02](assets\pc02.png)
+<hr>
+
+![dhcp_pc04](assets\pc04.png)
+<hr>
+
+![dhcp_pc06](assets\pc06.png)
+
+</details>
+
+<details>
+<summary> <b>Tentando comunicação entre as máquinas</b> </summary>
+
+![ping_pc01](assets\ping_pc01.png)
+<hr>
+
+![ping_pc04](assets\ping_pc04.png)
+<hr>
+
+![ping_pc06](assets\ping_pc06.png)
+<hr>
+
+</details>
+
+<details>
+<summary> <b>Verificando leases pós ping</b> </summary>
+
+![lease_pos](assets\teste_pos_ping.png)
+
+</details>
+
+<details>
+<summary> <b>Vantagens sob o uso do DHCP</b> </summary>
+
+Fazendo a configuração do DHCP mesmo em uma rede pequena, na minha opinião é uma boa prática, já que minimiza erros da configuração manual de ips, na minha primeira tentativa, configurando manualmente acabei fazendo um overlapping nos endereços, resolvi resetando o mikrotik via cli e depois utilizando o dhcp conforme a documentação do professor. 
+
+Os principais pontos positivos do DHCP são: redução de erros, economia de tempo e caso a rede aumente ou um usuário deseja receber um ip especifico o DHCP é a ferramenta ideal.
+
+</details>
+
+## Topologia da rede
+
+![Topologia](assets\topologiaGNS3.png)
