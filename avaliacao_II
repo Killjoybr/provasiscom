@@ -33,7 +33,7 @@
     
     "Questão10":{
         "pergunta":"Explique de forma básica para que serve um firewall e como ele atua em uma rede de computadores.",
-        "resposta":""
+        "resposta":"O Firewall pode ser entendido como uma barreira entre conexões confiáveis e não confiáveis. Funciona controlando o tráfego de rede, usa regras de segurança, pode ser apenas configurado como hardware (dispositivo semelhante ao Switch) ou software rodando em máquina."
     }
 }
 ```
